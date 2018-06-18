@@ -30,12 +30,6 @@
         </div>
     </div>
 
-
-    <!-- <img src="https://media1.giphy.com/media/3o85xkQpyMlnBkpB9C/200_s.gif" data-still="https://media1.giphy.com/media/3o85xkQpyMlnBkpB9C/200_s.gif" data-animate="https://media1.giphy.com/media/3o85xkQpyMlnBkpB9C/200.gif" data-state="still" class="gif">
-  <img src="https://media2.giphy.com/media/8rFQp4kHXJ0gU/200_s.gif" data-still="https://media2.giphy.com/media/8rFQp4kHXJ0gU/200_s.gif" data-animate="https://media2.giphy.com/media/8rFQp4kHXJ0gU/200.gif" data-state="still" class="gif">
-  <img src="https://media3.giphy.com/media/W6LbnBigDe4ZG/200_s.gif" data-still="https://media3.giphy.com/media/W6LbnBigDe4ZG/200_s.gif" data-animate="https://media3.giphy.com/media/W6LbnBigDe4ZG/200.gif" data-state="still" class="gif"> -->
-
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript">
         var topics = ["subaru", "honda", "land rover", "bmw", "lexus"]
@@ -49,14 +43,12 @@
                 a.text(topics[i]);
                 a.attr('onClick','getGiphy($(this).html())')
                 $("#buttons-view").append(a);
-
             }
         }
 
-
         function getGiphy(gif) {
             var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=ANL1wBop73GYuyhDonxP9gis4JaIoV58&q=" + gif +
-                "&limit=10&offset=0&rating=G&lang=en";
+                "&limit=5&offset=0&rating=G&lang=en";
             $.ajax({
                 url: queryURL,
                 method: "GET"
@@ -76,11 +68,7 @@
             });
         }
 
-        // $("button").click( function () {
-        //     getGiphy($(this).html())
-        // });
-
-        $(document).on("click", ".gif", function () {
+        $(document).on("click", ".gif",  function () {
             var state = $(this).attr("data-state")
             console.log(state)
             if (state === "still") {
