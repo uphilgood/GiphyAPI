@@ -11,23 +11,45 @@
 <body>
     <div class="jumbotron jumbotron-fluid">
         <div class="container">
-            <h1 class="display-3">Fluid jumbotron</h1>
-            <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+            <h1 class="display-3" style="text-align: center">Giphy Time</h1>
+            <p class="lead" style="text-align: center">Search any Gif!</p>
 
             <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="" aria-label="Recipient's username" aria-describedby="basic-addon2" id="textinput">
-                <div class="input-group-append" >
+                <input type="text" class="form-control" placeholder="" aria-label="Recipient's username" aria-describedby="basic-addon2"
+                    id="textinput">
+                <div class="input-group-append">
                     <button class="btn btn-outline-secondary" type="button" id="search">Search</button>
                 </div>
             </div>
+
+            
 
             <div class="btn-group" role="group" aria-label="Basic example" id="buttons-view">
 
             </div>
         </div>
+        
+        <div class="row" id="gifs-appear-here">
+       
+            
 
-        <div id="gifs-appear-here">
         </div>
+
+        
+        <!-- <div class="row">
+            <div class="col-sm-4">
+        
+        <div class="card" style="width: 18rem;">
+            <div id="gifs-appear-here">
+
+            </div>
+               
+              </div> 
+            </div>
+        </div>  -->
+
+      
+
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -41,7 +63,7 @@
                 var a = $("<button>");
                 a.addClass("btn btn-secondary");
                 a.text(topics[i]);
-                a.attr('onClick','getGiphy($(this).html())')
+                a.attr('onClick', 'getGiphy($(this).html())')
                 $("#buttons-view").append(a);
             }
         }
@@ -59,16 +81,18 @@
                     var p = $("<p>").text("rating; " + data.rating)
                     var gifImage = $("<img>")
                     gifImage.attr("src", data.images.fixed_height.url)
-                    .attr("data-still", data.images.fixed_height_still.url)
-                    .attr("data-animate", data.images.fixed_height.url)
-                    .attr("datastate", "still")
-                    .addClass("gif")
-                    imageDiv.append(p).append(gifImage)
-                    $("#gifs-appear-here").prepend(imageDiv)})
+                        .attr("data-still", data.images.fixed_height_still.url)
+                        .attr("data-animate", data.images.fixed_height.url)
+                        .attr("datastate", "still")
+                        .addClass("gif")
+                        .addClass("card-body")
+                    imageDiv.append(gifImage).append(p)
+                    $("#gifs-appear-here").prepend(imageDiv)
+                })
             });
         }
 
-        $(document).on("click", ".gif",  function () {
+        $(document).on("click", ".gif", function () {
             var state = $(this).attr("data-state")
             console.log(state)
             if (state === "still") {
@@ -81,7 +105,7 @@
             }
         });
 
-        $("#search").click( function (event) {
+        $("#search").click(function (event) {
             event.preventDefault();
             topics.push($("#textinput").val())
             createButton();
@@ -89,6 +113,7 @@
         });
 
         createButton();
+
     </script>
 
 </body>
