@@ -78,7 +78,7 @@
                 var results = response.data
                 results.forEach(data => {
                     var imageDiv = $("<div>")
-                    var p = $("<p>").text("rating; " + data.rating)
+                    var p = $("<p>").text("rating; " + data.rating).css('text-align','center');
                     var gifImage = $("<img>")
                     gifImage.attr("src", data.images.fixed_height.url)
                         .attr("data-still", data.images.fixed_height_still.url)
