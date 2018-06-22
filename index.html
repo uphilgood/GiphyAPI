@@ -4,6 +4,7 @@
 <head>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
         crossorigin="anonymous">
+        <link rel="stylesheet" href="style.css" >
     <meta charset="utf-8">
     <title>Stop: It's Giphy time</title>
 </head>
@@ -11,8 +12,8 @@
 <body>
     <div class="jumbotron jumbotron-fluid">
         <div class="container">
-            <h1 class="display-3" style="text-align: center">Giphy Time</h1>
-            <p class="lead" style="text-align: center">Search any Gif!</p>
+            <h1 class="display-3" style="text-align: center; color: azure" >Giphy Time</h1>
+            <p class="lead" style="text-align: center; color: azure">Search For Your Favorite Car Gif!</p>
 
             <div class="input-group mb-3">
                 <input type="text" class="form-control" placeholder="" aria-label="Recipient's username" aria-describedby="basic-addon2"
@@ -53,68 +54,7 @@
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script type="text/javascript">
-        var topics = ["subaru", "honda", "land rover", "bmw", "lexus"]
-
-        function createButton() {
-            var newTopics = topics
-            $("#buttons-view").empty()
-            for (var i = 0; i < topics.length; i++) {
-                var a = $("<button>");
-                a.addClass("btn btn-secondary");
-                a.text(topics[i]);
-                a.attr('onClick', 'getGiphy($(this).html())')
-                $("#buttons-view").append(a);
-            }
-        }
-
-        function getGiphy(gif) {
-            var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=ANL1wBop73GYuyhDonxP9gis4JaIoV58&q=" + gif +
-                "&limit=5&offset=0&rating=G&lang=en";
-            $.ajax({
-                url: queryURL,
-                method: "GET"
-            }).then(response => {
-                var results = response.data
-                results.forEach(data => {
-                    var imageDiv = $("<div>")
-                    var p = $("<p>").text("rating; " + data.rating).css('text-align','center');
-                    var gifImage = $("<img>")
-                    gifImage.attr("src", data.images.fixed_height.url)
-                        .attr("data-still", data.images.fixed_height_still.url)
-                        .attr("data-animate", data.images.fixed_height.url)
-                        .attr("datastate", "still")
-                        .addClass("gif")
-                        .addClass("card-body")
-                    imageDiv.append(gifImage).append(p)
-                    $("#gifs-appear-here").prepend(imageDiv)
-                })
-            });
-        }
-
-        $(document).on("click", ".gif", function () {
-            var state = $(this).attr("data-state")
-            console.log(state)
-            if (state === "still") {
-                $(this).attr("src", $(this).attr("data-animate"))
-                $(this).attr("data-state", "animate")
-
-            } else {
-                $(this).attr("src", $(this).attr("data-still"))
-                $(this).attr("data-state", "still")
-            }
-        });
-
-        $("#search").click(function (event) {
-            event.preventDefault();
-            topics.push($("#textinput").val())
-            createButton();
-            $("#textinput").val('')
-        });
-
-        createButton();
-
-    </script>
+    <script type="text/javascript" src="app.js"></script>
 
 </body>
 
